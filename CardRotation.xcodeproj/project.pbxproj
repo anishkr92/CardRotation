@@ -9,21 +9,33 @@
 /* Begin PBXBuildFile section */
 		C20D83F623982FEB002679A3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20D83F523982FEB002679A3 /* AppDelegate.swift */; };
 		C20D83F823982FEB002679A3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20D83F723982FEB002679A3 /* SceneDelegate.swift */; };
-		C20D83FA23982FEB002679A3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20D83F923982FEB002679A3 /* ViewController.swift */; };
 		C20D83FD23982FEB002679A3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C20D83FB23982FEB002679A3 /* Main.storyboard */; };
 		C20D83FF23982FED002679A3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C20D83FE23982FED002679A3 /* Assets.xcassets */; };
 		C20D840223982FED002679A3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C20D840023982FED002679A3 /* LaunchScreen.storyboard */; };
+		C2F0E436239910320043774E /* CardRotationScenePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2F0E430239910320043774E /* CardRotationScenePresenter.swift */; };
+		C2F0E437239910320043774E /* CardRotationSceneWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2F0E431239910320043774E /* CardRotationSceneWorker.swift */; };
+		C2F0E438239910320043774E /* CardRotationSceneRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2F0E432239910320043774E /* CardRotationSceneRouter.swift */; };
+		C2F0E439239910320043774E /* CardRotationSceneModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2F0E433239910320043774E /* CardRotationSceneModels.swift */; };
+		C2F0E43A239910320043774E /* CardRotationSceneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2F0E434239910320043774E /* CardRotationSceneViewController.swift */; };
+		C2F0E43B239910320043774E /* CardRotationSceneInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2F0E435239910320043774E /* CardRotationSceneInteractor.swift */; };
+		C2F0E43D2399192F0043774E /* CRConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2F0E43C2399192F0043774E /* CRConstants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		C20D83F223982FEB002679A3 /* CardRotation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CardRotation.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C20D83F523982FEB002679A3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C20D83F723982FEB002679A3 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		C20D83F923982FEB002679A3 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		C20D83FC23982FEB002679A3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		C20D83FE23982FED002679A3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C20D840123982FED002679A3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C20D840323982FED002679A3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C2F0E430239910320043774E /* CardRotationScenePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardRotationScenePresenter.swift; sourceTree = "<group>"; };
+		C2F0E431239910320043774E /* CardRotationSceneWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardRotationSceneWorker.swift; sourceTree = "<group>"; };
+		C2F0E432239910320043774E /* CardRotationSceneRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardRotationSceneRouter.swift; sourceTree = "<group>"; };
+		C2F0E433239910320043774E /* CardRotationSceneModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardRotationSceneModels.swift; sourceTree = "<group>"; };
+		C2F0E434239910320043774E /* CardRotationSceneViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardRotationSceneViewController.swift; sourceTree = "<group>"; };
+		C2F0E435239910320043774E /* CardRotationSceneInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardRotationSceneInteractor.swift; sourceTree = "<group>"; };
+		C2F0E43C2399192F0043774E /* CRConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CRConstants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,15 +68,37 @@
 		C20D83F423982FEB002679A3 /* CardRotation */ = {
 			isa = PBXGroup;
 			children = (
+				C2F0E43E239922F70043774E /* Scenes */,
 				C20D83F523982FEB002679A3 /* AppDelegate.swift */,
 				C20D83F723982FEB002679A3 /* SceneDelegate.swift */,
-				C20D83F923982FEB002679A3 /* ViewController.swift */,
 				C20D83FB23982FEB002679A3 /* Main.storyboard */,
+				C2F0E43C2399192F0043774E /* CRConstants.swift */,
 				C20D83FE23982FED002679A3 /* Assets.xcassets */,
 				C20D840023982FED002679A3 /* LaunchScreen.storyboard */,
 				C20D840323982FED002679A3 /* Info.plist */,
 			);
 			path = CardRotation;
+			sourceTree = "<group>";
+		};
+		C2F0E43E239922F70043774E /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				C2F0E43F239922FF0043774E /* CardRotationScene */,
+			);
+			path = Scenes;
+			sourceTree = "<group>";
+		};
+		C2F0E43F239922FF0043774E /* CardRotationScene */ = {
+			isa = PBXGroup;
+			children = (
+				C2F0E434239910320043774E /* CardRotationSceneViewController.swift */,
+				C2F0E435239910320043774E /* CardRotationSceneInteractor.swift */,
+				C2F0E430239910320043774E /* CardRotationScenePresenter.swift */,
+				C2F0E431239910320043774E /* CardRotationSceneWorker.swift */,
+				C2F0E432239910320043774E /* CardRotationSceneRouter.swift */,
+				C2F0E433239910320043774E /* CardRotationSceneModels.swift */,
+			);
+			path = CardRotationScene;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -138,9 +172,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C20D83FA23982FEB002679A3 /* ViewController.swift in Sources */,
+				C2F0E43D2399192F0043774E /* CRConstants.swift in Sources */,
+				C2F0E438239910320043774E /* CardRotationSceneRouter.swift in Sources */,
 				C20D83F623982FEB002679A3 /* AppDelegate.swift in Sources */,
+				C2F0E437239910320043774E /* CardRotationSceneWorker.swift in Sources */,
+				C2F0E439239910320043774E /* CardRotationSceneModels.swift in Sources */,
+				C2F0E436239910320043774E /* CardRotationScenePresenter.swift in Sources */,
+				C2F0E43B239910320043774E /* CardRotationSceneInteractor.swift in Sources */,
 				C20D83F823982FEB002679A3 /* SceneDelegate.swift in Sources */,
+				C2F0E43A239910320043774E /* CardRotationSceneViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
