@@ -27,6 +27,8 @@
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" image="arrowshape.turn.up.right.fill" catalog="system"/>
                                 <connections>
+                                    <action selector="rotateButtonTouchStop:" destination="BYZ-38-t0r" eventType="touchUpInside" id="9JQ-11-w2p"/>
+                                    <action selector="rotateButtonTouchStop:" destination="BYZ-38-t0r" eventType="touchUpOutside" id="EZu-Jr-qxu"/>
                                     <action selector="rotateRight:" destination="BYZ-38-t0r" eventType="touchDown" id="S80-PY-AMp"/>
                                 </connections>
                             </button>
@@ -39,6 +41,8 @@
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" image="arrowshape.turn.up.left.fill" catalog="system"/>
                                 <connections>
+                                    <action selector="rotateButtonTouchStop:" destination="BYZ-38-t0r" eventType="touchUpInside" id="1nl-J1-ngA"/>
+                                    <action selector="rotateButtonTouchStop:" destination="BYZ-38-t0r" eventType="touchUpOutside" id="2Nn-lZ-P9I"/>
                                     <action selector="rotateLeft:" destination="BYZ-38-t0r" eventType="touchDown" id="lh4-fS-3gh"/>
                                 </connections>
                             </button>

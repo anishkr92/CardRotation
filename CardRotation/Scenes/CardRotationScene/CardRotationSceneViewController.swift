@@ -90,14 +90,31 @@ class CardRotationSceneViewController: UIViewController, CardRotationSceneDispla
         self.cardBackImageView.layer.transform = CATransform3DRotate(CATransform3DIdentity, CGFloat((interactor!.currentCardAngle + 180) * CRConstants.radianFactor), 0.0, 1.0, 0.0)
     }
     
+    // MARK: Helper Variables
+    var timer: Timer?
+    
     // MARK: Actions
     
     @IBAction func rotateLeft(_ sender: Any) {
         rotateCard(inDirection: .left)
+        if timer == nil || timer!.isValid == false {
+            timer = Timer.scheduledTimer(withTimeInterval: 0.2, repeats: true) { [weak self] (timer) in
+                self?.rotateLeft(sender)
+            }
+        }
     }
     
     @IBAction func rotateRight(_ sender: Any) {
         rotateCard(inDirection: .right)
+        if timer == nil || timer!.isValid == false {
+            timer = Timer.scheduledTimer(withTimeInterval: 0.2, repeats: true) { [weak self] (timer) in
+                self?.rotateRight(sender)
+            }
+        }
+    }
+    
+    @IBAction func rotateButtonTouchStop(_ sender: Any) {
+        timer?.invalidate()
     }
     
     // MARK: Rotate Card
