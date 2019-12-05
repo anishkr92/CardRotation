@@ -19,16 +19,23 @@ class CardRotationSceneWorker
         return 0.0
     }
     
+    /// Gets the detailed rotation data for the specified rotation
+    /// - Parameters:
+    ///   - currentCardAngle: Current angle of the card
+    ///   - request: The request for rotation
+    ///   - direction: The direction of rotation
     func getRotationValues(from currentCardAngle: Float, forRequest request: CardRotationScene.Request, towards direction: CardRotationScene.RotationDirection) -> CardRotationScene.Response {
         let toAngle = getRotationAngle(fromAngle: currentCardAngle, rotatedBy: request.rotationAngle, direction: direction)
-        let fromValue = currentCardAngle * CRConstants.radianFactor
-        let toValue = toAngle * CRConstants.radianFactor
-        let rotatedBy = request.rotationAngle * CRConstants.radianFactor
         
-        let response = CardRotationScene.Response(fromAngle: currentCardAngle, toAngle: toAngle, rotationAngle: request.rotationAngle, fromValue: fromValue, toValue: toValue, rotatedByValue: rotatedBy, duration: request.duration)
+        let response = CardRotationScene.Response(frontFromAngle: currentCardAngle, frontToAngle: toAngle, rotationAngle: request.rotationAngle, duration: request.duration)
         return response
     }
     
+    /// Gets the resultant angle of the rotation
+    /// - Parameters:
+    ///   - fromAngle: Angle from which the rotation starts
+    ///   - rotatedBy: Angle by which the rotation is done
+    ///   - direction: The direction of the rotation
     private func getRotationAngle(fromAngle: Float, rotatedBy: Float, direction: CardRotationScene.RotationDirection) -> Float {
         switch direction {
         case .left:

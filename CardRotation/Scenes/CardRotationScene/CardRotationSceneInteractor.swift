@@ -28,10 +28,14 @@ class CardRotationSceneInteractor: CardRotationSceneBusinessLogic, CardRotationS
     var presenter: CardRotationScenePresentationLogic?
     var worker: CardRotationSceneWorker?
 
-    var currentCardAngle: Float = 0.0
+    var currentCardAngle: Float = CRConstants.rotationStartAngle
     
     // MARK: Rotate Card
     
+    /// Prepares the card rotation and calls the presenter to present it
+    /// - Parameters:
+    ///   - request: The request for rotating the card
+    ///   - direction: Direction of rotation
     func rotateCard(request: CardRotationScene.Request, direction: CardRotationScene.RotationDirection)
     {
         worker = CardRotationSceneWorker()
@@ -39,6 +43,6 @@ class CardRotationSceneInteractor: CardRotationSceneBusinessLogic, CardRotationS
         let response = worker!.getRotationValues(from: currentCardAngle, forRequest: request, towards: direction)
         presenter?.presentCardRotation(response: response)
         
-        currentCardAngle = response.toAngle.truncatingRemainder(dividingBy: 360)
+        currentCardAngle = response.frontSide.toAngle.truncatingRemainder(dividingBy: 360)
     }
 }

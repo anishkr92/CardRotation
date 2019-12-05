@@ -21,12 +21,11 @@ class CardRotationSceneViewController: UIViewController, CardRotationSceneDispla
 {
     var interactor: CardRotationSceneBusinessLogic?
     var router: (NSObjectProtocol & CardRotationSceneRoutingLogic & CardRotationSceneDataPassing)?
-    
-    var currentAngle: Float = 0.0
 
     // MARK: Outlets
     
-    @IBOutlet weak var cardImageView: UIImageView!
+    @IBOutlet weak var cardFrontImageView: UIImageView!
+    @IBOutlet weak var cardBackImageView: UIImageView!
     @IBOutlet weak var leftRotateButton: UIButton!
     @IBOutlet weak var rightRotateButton: UIButton!
 
@@ -44,6 +43,7 @@ class CardRotationSceneViewController: UIViewController, CardRotationSceneDispla
     
     // MARK: Setup
     
+    /// Sets up the relations for the Clean Swift architecture
     private func setup() {
         let viewController = self
         let interactor = CardRotationSceneInteractor()
@@ -77,8 +77,17 @@ class CardRotationSceneViewController: UIViewController, CardRotationSceneDispla
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        // Make the card immage one-sided
+        self.cardFrontImageView.layer.isDoubleSided = false
+        self.cardBackImageView.layer.isDoubleSided = false
+
         // Set perspective for the rotation
-        self.cardImageView.layer.transform.m34 = 0.0
+        self.cardFrontImageView.layer.transform.m34 = 0.0
+        self.cardBackImageView.layer.transform.m34 = 0.0
+        
+        // Rotate to existing angle
+        self.cardFrontImageView.layer.transform = CATransform3DRotate(CATransform3DIdentity, CGFloat(interactor!.currentCardAngle * CRConstants.radianFactor), 0.0, 1.0, 0.0)
+        self.cardBackImageView.layer.transform = CATransform3DRotate(CATransform3DIdentity, CGFloat((interactor!.currentCardAngle + 180) * CRConstants.radianFactor), 0.0, 1.0, 0.0)
     }
     
     // MARK: Actions
@@ -93,21 +102,19 @@ class CardRotationSceneViewController: UIViewController, CardRotationSceneDispla
     
     // MARK: Rotate Card
     
+    /// Rotate the card in the specified direction
+    /// - Parameter direction: The direction in which the card should rotate
     func rotateCard(inDirection direction: CardRotationScene.RotationDirection) {
         let request = CardRotationScene.Request(rotationAngle: CRConstants.cardRotationAngle, duration: CRConstants.animationDuration)
         interactor?.rotateCard(request: request, direction: direction)
     }
     
+    /// Animate the card rotation
+    /// - Parameter viewModel: The view model containing data to help with the animation
     func animateCardRotation(viewModel: CardRotationScene.ViewModel) {
-        let rotateAnimation = CABasicAnimation(keyPath: "transform.rotation.y")
-        rotateAnimation.fromValue = viewModel.fromValue
-        rotateAnimation.toValue = viewModel.toValue
-        rotateAnimation.duration = viewModel.duration
-        rotateAnimation.repeatCount = 0
-        
-        DispatchQueue.main.async {
-            self.cardImageView.layer.add(rotateAnimation, forKey: nil)
-            self.cardImageView.layer.transform = CATransform3DRotate(self.cardImageView.layer.transform, CGFloat(viewModel.rotatedByValue), 0.0, 1.0, 0.0)
+        UIView.animate(withDuration: viewModel.duration) {
+            self.cardFrontImageView.layer.transform = CATransform3DRotate(CATransform3DIdentity, CGFloat(viewModel.frontSideToValue), 0.0, 1.0, 0.0)
+            self.cardBackImageView.layer.transform = CATransform3DRotate(CATransform3DIdentity, CGFloat(viewModel.backSideToValue), 0.0, 1.0, 0.0)
         }
     }
 }

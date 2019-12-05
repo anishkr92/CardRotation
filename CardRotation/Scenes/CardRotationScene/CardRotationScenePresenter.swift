@@ -23,9 +23,11 @@ class CardRotationScenePresenter: CardRotationScenePresentationLogic
     
     // MARK: Present Card Rotation
     
+    /// Present the card rotation to the view controller
+    /// - Parameter response: The response data containing all details for the rotation
     func presentCardRotation(response: CardRotationScene.Response)
     {
-        let viewModel = CardRotationScene.ViewModel(fromValue: response.fromValue, toValue: response.toValue, rotatedByValue: response.rotatedByValue, duration: response.duration)
+        let viewModel = CardRotationScene.ViewModel(frontSideToValue: response.frontSide.toValue, backSideToValue: response.backSide.toValue, duration: response.duration)
         viewController?.animateCardRotation(viewModel: viewModel)
     }
 }

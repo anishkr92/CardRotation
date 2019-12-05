@@ -24,23 +24,47 @@ enum CardRotationScene
     
     struct Response
     {
-        var fromAngle: Float
-        var toAngle: Float
+        var frontSide: CardRotationData
+        var backSide: CardRotationData
         var rotationAngle: Float
-        var fromValue: Float
-        var toValue: Float
         var rotatedByValue: Float
         var duration: CFTimeInterval
+        
+        /// Initializer for CardRotationScene.Response
+        /// - Parameters:
+        ///   - frontFromAngle: Rotation stating angle for the front side of the card
+        ///   - frontToAngle: Rotation ending angle for the front side of the card
+        ///   - rotationAngle: Angle by which the card is rotated
+        ///   - duration: Duration taken to complete the rotation
+        init(frontFromAngle: Float, frontToAngle: Float, rotationAngle: Float, duration: CFTimeInterval) {
+            let frontFromValue = frontFromAngle * CRConstants.radianFactor
+            let frontToValue = frontToAngle * CRConstants.radianFactor
+            self.frontSide = CardRotationData(fromAngle: frontFromAngle, toAngle: frontToAngle, fromValue: frontFromValue, toValue: frontToValue)
+
+            let backFromValue = (frontFromAngle + 180.0) * CRConstants.radianFactor
+            let backToValue = (frontToAngle + 180.0) * CRConstants.radianFactor
+            self.backSide = CardRotationData(fromAngle: frontFromAngle + 180.0, toAngle: frontToAngle + 180.0, fromValue: backFromValue, toValue: backToValue)
+
+            self.rotationAngle = rotationAngle
+            self.rotatedByValue = rotationAngle * CRConstants.radianFactor
+            self.duration = duration
+        }
     }
     
     struct ViewModel
     {
-        var fromValue: Float
-        var toValue: Float
-        var rotatedByValue: Float
+        var frontSideToValue: Float
+        var backSideToValue: Float
         var duration: CFTimeInterval
     }
-    
+
+    struct CardRotationData {
+        var fromAngle: Float
+        var toAngle: Float
+        var fromValue: Float
+        var toValue: Float
+    }
+
     enum RotationDirection {
         case left
         case right
