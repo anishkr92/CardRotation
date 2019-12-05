@@ -14,9 +14,20 @@ import UIKit
 
 class CardRotationSceneWorker
 {
+    /// Saves the angle of the card
+    /// - Parameter cardAngle: <#cardAngle description#>
+    func saveCardAngle(_ cardAngle: Float) {
+        UserDefaults.standard.set(cardAngle, forKey: CRConstants.Keys.cardAngle)
+    }
+    
+    /// Gets the saved rotation angle of the card
     func getSavedCardAngle() -> Float
     {
-        return 0.0
+        if let cardAngleString = UserDefaults.standard.string(forKey: CRConstants.Keys.cardAngle) {
+            return (cardAngleString as NSString).floatValue
+        } else {
+            return CRConstants.rotationStartAngle
+        }
     }
     
     /// Gets the detailed rotation data for the specified rotation

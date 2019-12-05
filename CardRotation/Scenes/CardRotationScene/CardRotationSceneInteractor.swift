@@ -15,7 +15,10 @@ import UIKit
 protocol CardRotationSceneBusinessLogic
 {
     var currentCardAngle: Float { get set }
+    
+    func setupCardAngle()
     func rotateCard(request: CardRotationScene.Request, direction: CardRotationScene.RotationDirection)
+    func saveCardAngle()
 }
 
 protocol CardRotationSceneDataStore
@@ -29,6 +32,12 @@ class CardRotationSceneInteractor: CardRotationSceneBusinessLogic, CardRotationS
     var worker: CardRotationSceneWorker?
 
     var currentCardAngle: Float = CRConstants.rotationStartAngle
+    
+    // MARK: Setup card Angle
+    func setupCardAngle() {
+        worker = CardRotationSceneWorker()
+        currentCardAngle = worker!.getSavedCardAngle()
+    }
     
     // MARK: Rotate Card
     
@@ -44,5 +53,11 @@ class CardRotationSceneInteractor: CardRotationSceneBusinessLogic, CardRotationS
         presenter?.presentCardRotation(response: response)
         
         currentCardAngle = response.frontSide.toAngle.truncatingRemainder(dividingBy: 360)
+    }
+    
+    /// Saves the current angle of the card
+    func saveCardAngle() {
+        worker = CardRotationSceneWorker()
+        worker?.saveCardAngle(currentCardAngle)
     }
 }

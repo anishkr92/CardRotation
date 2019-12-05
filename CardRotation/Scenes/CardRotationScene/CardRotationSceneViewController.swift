@@ -72,6 +72,8 @@ class CardRotationSceneViewController: UIViewController, CardRotationSceneDispla
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        // Rotate the card to initial position
+        self.interactor?.setupCardAngle()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -86,8 +88,16 @@ class CardRotationSceneViewController: UIViewController, CardRotationSceneDispla
         self.cardBackImageView.layer.transform.m34 = 0.0
         
         // Rotate to existing angle
-        self.cardFrontImageView.layer.transform = CATransform3DRotate(CATransform3DIdentity, CGFloat(interactor!.currentCardAngle * CRConstants.radianFactor), 0.0, 1.0, 0.0)
-        self.cardBackImageView.layer.transform = CATransform3DRotate(CATransform3DIdentity, CGFloat((interactor!.currentCardAngle + 180) * CRConstants.radianFactor), 0.0, 1.0, 0.0)
+        let request = CardRotationScene.Request(rotationAngle: 0, duration: 0)
+        interactor?.rotateCard(request: request, direction: .right)
+        
+//        self.cardFrontImageView.layer.transform = CATransform3DRotate(CATransform3DIdentity, CGFloat(interactor!.currentCardAngle * CRConstants.radianFactor), 0.0, 1.0, 0.0)
+//        self.cardBackImageView.layer.transform = CATransform3DRotate(CATransform3DIdentity, CGFloat((interactor!.currentCardAngle + 180) * CRConstants.radianFactor), 0.0, 1.0, 0.0)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        interactor?.saveCardAngle()
+        super.viewWillDisappear(animated)
     }
     
     // MARK: Helper Variables

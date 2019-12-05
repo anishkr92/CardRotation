@@ -13,4 +13,8 @@ struct CRConstants {
     static let radianFactor = Float.pi / 180.0
     static let animationDuration: CFTimeInterval = 0.3
     static let rotationStartAngle: Float = 180.0
+    
+    struct Keys {
+        static let cardAngle = "CardAngle"
+    }
 }
